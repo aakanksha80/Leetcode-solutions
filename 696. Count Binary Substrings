@@ -1,0 +1,17 @@
+class Solution {
+    public int countBinarySubstrings(String s) {
+        int prevGroupSize=0,currGroupSize=1,count=0;
+
+        for(int i=1;i<s.length();i++){
+            if(s.charAt(i)==s.charAt(i-1)){
+                currGroupSize++;
+            }else{
+                count+=Math.min(prevGroupSize,currGroupSize);
+                prevGroupSize=currGroupSize;
+                currGroupSize=1;
+            }
+        }
+        count+=Math.min(prevGroupSize,currGroupSize);
+        return count;
+    }
+}
